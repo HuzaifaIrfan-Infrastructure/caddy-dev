@@ -26,22 +26,53 @@
 # Refer to the Caddy docs for more information:
 # https://caddyserver.com/docs/caddyfile
 
-chat.huzaifairfan.com {
+chatwoot.huzaifairfan.com {
     reverse_proxy chatwoot-rails:3000
 
     # Optional: Enable gzip & logging
     encode gzip
     log {
-        output file /var/log/caddy/chatwoot.log
+        output file /var/log/caddy/chatwoot_huzaifairfan_com.log
     }
 }
 
-dev.huzaifairfan.com {
-    reverse_proxy chatwoot_bot:8000
+http://chatwoot.home {
+    reverse_proxy chatwoot-rails:3000
 
     # Optional: Enable gzip & logging
     encode gzip
     log {
-        output file /var/log/caddy/chatwoot.log
+        output file /var/log/caddy/chatwoot_home.log
+    }
+}
+
+
+git.huzaifairfan.com {
+    reverse_proxy gitlab:80
+
+    # Optional: Enable gzip & logging
+    encode gzip
+    log {
+        output file /var/log/caddy/git_huzaifairfan_com.log
+    }
+}
+
+http://git.home {
+    reverse_proxy gitlab:80
+
+    # Optional: Enable gzip & logging
+    encode gzip
+    log {
+        output file /var/log/caddy/git_home.log
+    }
+}
+
+http://cattr.home {
+    reverse_proxy app:80
+
+    # Optional: Enable gzip & logging
+    encode gzip
+    log {
+        output file /var/log/caddy/cattr_home.log
     }
 }
